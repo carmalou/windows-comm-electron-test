@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>What is your name?</title>
+  </head>
+  <body>
+    <label>What is your name? <input type="text" id="newName" placeholder="Darth Vader"></label>
+    <button type="submit" id="nameUpdate">Update</button>
+  </body>
+
+  <script>
+    var ipcRenderer = require('electron').ipcRenderer;
+    var nameBtnUpdate = document.getElementById('nameUpdate');
+
+    function sendNameBack(event) {
+      event.preventDefault();
+      var tmpName = document.getElementById('newName').value;
+      ipcRenderer.send('update-the-name', tmpName);
+    }
+
+    nameBtnUpdate.addEventListener('click', sendNameBack);
+
+  </script>
+</html>
