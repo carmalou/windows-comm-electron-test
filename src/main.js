@@ -31,7 +31,9 @@ function handleSquirrelEvent() {
 
     try {
       spawnedProcess = ChildProcess.spawn(command, args, {detached: true});
-    } catch (error) {}
+    } catch (error) {
+      console.log('err', error);
+    }
 
     return spawnedProcess;
   };
