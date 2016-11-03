@@ -1,19 +1,15 @@
 var electron = require('electron');
 // Module to control application life.
 var app = electron.app;
-// Module to create native browser window.
-var BrowserWindow = electron.BrowserWindow;
-var ipcMain = electron.ipcMain;
-var GhReleases = require('electron-gh-releases');
-// console.log('ghreleases', GhReleases);
+
+// if(require('electron-squirrel-startup')) {
+//  return;
+// }
 
 // this should be placed at top of main.js to handle setup events quickly
-if (handleSquirrelEvent()) {
-  // squirrel event handled and app will exit in 1000ms, so don't do anything else
-  return;
-}
+var handleSquirrelEvent = function handleSquirrelEvent() {
+  // someError('handleSquirrelEvent func');
 
-function handleSquirrelEvent() {
   if (process.argv.length === 1) {
     return false;
   }
@@ -32,7 +28,8 @@ function handleSquirrelEvent() {
     try {
       spawnedProcess = ChildProcess.spawn(command, args, {detached: true});
     } catch (error) {
-      console.log('err', error);
+      someError('err');
+      someError(error);
     }
 
     return spawnedProcess;
@@ -76,6 +73,17 @@ function handleSquirrelEvent() {
       return true;
   }
 };
+
+if (handleSquirrelEvent()) {
+  // squirrel event handled and app will exit in 1000ms, so don't do anything else
+  return;
+}
+
+// Module to create native browser window.
+var BrowserWindow = electron.BrowserWindow;
+var ipcMain = electron.ipcMain;
+var GhReleases = require('electron-gh-releases');
+// console.log('ghreleases', GhReleases);
 
 function checkForNewVersion() {
   someError('check for new version');

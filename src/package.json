@@ -1,6 +1,6 @@
 {
   "name": "electron_quick_start",
-  "version": "1.0.24",
+  "version": "1.0.21",
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
@@ -25,13 +25,7 @@
   },
   "homepage": "https://github.com/electron/electron-quick-start#readme",
   "devDependencies": {
-    "electron-prebuilt": "^1.2.0",
-    "electron-squirrel-startup": "^1.0.0",
-    "electron-winstaller": "^2.3.4",
-    "grunt": "^1.0.1",
-    "grunt-electron-installer": "^2.1.0"
+    "electron-prebuilt": "^1.2.0"
   },
-  "dependencies": {
-    "electron-gh-releases": "^2.0.4"
-  }
+  "dependencies": {}
 }
