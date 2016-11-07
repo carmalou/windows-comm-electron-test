@@ -1,6 +1,6 @@
 {
   "name": "electron_quick_start",
-  "version": "1.0.21",
+  "version": "1.0.23",
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
@@ -25,7 +25,8 @@
   },
   "homepage": "https://github.com/electron/electron-quick-start#readme",
   "devDependencies": {
-    "electron-prebuilt": "^1.2.0"
+    "electron-prebuilt": "^1.2.0",
+    "electron-squirrel-startup": "^1.0.0"
   },
   "dependencies": {}
 }

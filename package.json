@@ -4,7 +4,9 @@
   "description": "",
   "main": "generateInstaller.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-mac": "electron-packager /Users/carmenlong/Desktop/windows-comms/src windows-comms --out /Users/carmenlong/Desktop/windows-comms/build --platform=darwin --arch=x64 --overwrite",
+    "build-windows": "electron-packager /Users/carmenlong/Desktop/windows-comms/src windows-comms --out /Users/carmenlong/Desktop/windows-comms/build --platform=win32 --arch=ia32 --overwrite"
   },
   "repository": {
     "type": "git",
@@ -17,6 +19,7 @@
   },
   "homepage": "https://github.com/carmalou/windows-comm-electron-test#readme",
   "devDependencies": {
+    "electron-builder": "^7.18.0",
     "electron-winstaller": "^2.3.4"
   }
 }
