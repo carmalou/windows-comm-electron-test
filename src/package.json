@@ -1,12 +1,10 @@
 {
   "name": "electron_quick_start",
-  "version": "1.0.23",
+  "version": "1.0.46",
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
-    "start": "electron .",
-    "build-mac": "electron-packager /Users/carmenlong/Desktop/windows-comms/src windows-comms --out /Users/carmenlong/Desktop/windows-comms/build --platform=darwin --arch=x64 --overwrite",
-    "build-windows": "electron-packager /Users/carmenlong/Desktop/windows-comms/src windows-comms --out /Users/carmenlong/Desktop/windows-comms/build --platform=win32 --arch=ia32 --overwrite"
+    "start": "electron ."
   },
   "repository": {
     "type": "git",
@@ -25,8 +23,9 @@
   },
   "homepage": "https://github.com/electron/electron-quick-start#readme",
   "devDependencies": {
-    "electron-prebuilt": "^1.2.0",
-    "electron-squirrel-startup": "^1.0.0"
+    "electron-prebuilt": "^1.2.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "fs": "0.0.1-security"
+  }
 }

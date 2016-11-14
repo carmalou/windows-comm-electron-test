@@ -8,8 +8,6 @@ var packageDotJson = require('./package.json');
 
 console.log('version no. ' + packageDotJson.version);
 
-console.log('ipcRenderer', ipcRenderer);
-
 function openTheWindow() {
   console.log('openTheWindow');
   ipcRenderer.send('open-name-window');

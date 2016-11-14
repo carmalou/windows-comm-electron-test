@@ -1,14 +1,89 @@
 var electron = require('electron');
 // Module to control application life.
 var app = electron.app;
+var logIt = require('./writeLogs.js');
+
+var handleStartupEvent = function() {
+  if (process.platform !== 'win32') {
+    return false;
+  }
+
+  var squirrelCommand = process.argv[1];
+  switch (squirrelCommand) {
+    case '--squirrel-install':
+    case '--squirrel-updated':
+
+      // Optionally do things such as:
+      //
+      // - Install desktop and start menu shortcuts
+      // - Add your .exe to the PATH
+      // - Write to the registry for things like file associations and
+      //   explorer context menus
+
+      // Always quit when done
+      app.quit();
+
+      return true;
+    case '--squirrel-uninstall':
+      // Undo anything you did in the --squirrel-install and
+      // --squirrel-updated handlers
+
+      // Always quit when done
+      app.quit();
+
+      return true;
+    case '--squirrel-obsolete':
+      // This is called on the outgoing version of your app before
+      // we update to the new version - it's the opposite of
+      // --squirrel-updated
+      app.quit();
+      return true;
+  }
+};
+
+if (handleStartupEvent()) {
+  return;
+}
 // Module to create native browser window.
 var BrowserWindow = electron.BrowserWindow;
 var ipcMain = electron.ipcMain;
+var autoUpdater = electron.autoUpdater;
+var appVersion = require('./package.json').version;
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 var mainWindow;
 var nameWindow;
+var updateFeed = 'http://localhost:8080/installer32';
+
+autoUpdater.setFeedURL(updateFeed + '?v=' + appVersion);
+autoUpdater.checkForUpdates();
+
+logIt('version no. ' + appVersion);
+logIt('feed url ' + autoUpdater.getFeedURL());
+
+autoUpdater.on('error', function(err) {
+  logIt('There has been an error on line 67.');
+  logIt(err);
+});
+
+autoUpdater.on('checking-for-update', function() {
+  logIt('Checking for updates');
+});
+
+autoUpdater.on('update-available', function() {
+  logIt('Update is available');
+});
+
+autoUpdater.on('update-not-available', function() {
+  logIt('Update is not available');
+});
+
+autoUpdater.on('update-downloaded', function(response) {
+  logIt(response);
+  logIt('update downloaded!');
+  autoUpdater.quitAndInstall();
+});
 
 function createWindow () {
   // Create the browser window.

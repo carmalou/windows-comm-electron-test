@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-mac": "electron-packager /Users/carmenlong/Desktop/windows-comms/src windows-comms --out /Users/carmenlong/Desktop/windows-comms/build --platform=darwin --arch=x64 --overwrite",
-    "build-windows": "electron-packager /Users/carmenlong/Desktop/windows-comms/src windows-comms --out /Users/carmenlong/Desktop/windows-comms/build --platform=win32 --arch=ia32 --overwrite"
+    "build-windows": "electron-packager C:\\Users\\carmenlong\\Desktop\\windows-comm-electron-test\\src windows-comms --out ./build --platform=win32 --arch=ia32 --overwrite"
   },
   "repository": {
     "type": "git",
