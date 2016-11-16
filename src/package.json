@@ -26,6 +26,8 @@
     "electron-prebuilt": "^1.2.0"
   },
   "dependencies": {
-    "fs": "0.0.1-security"
+    "fs": "0.0.1-security",
+    "os": "^0.1.1",
+    "path": "^0.12.7"
   }
 }

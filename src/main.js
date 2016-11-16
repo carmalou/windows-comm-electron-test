@@ -80,7 +80,6 @@ autoUpdater.on('update-not-available', function() {
 });
 
 autoUpdater.on('update-downloaded', function(response) {
-  logIt(response);
   logIt('update downloaded!');
   autoUpdater.quitAndInstall();
 });
