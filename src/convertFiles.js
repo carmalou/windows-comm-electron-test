@@ -4,10 +4,40 @@ var path = require('path');
 var logIt = require('./writeLogs.js');
 var packagePath = os.homedir() + '\\AppData\\Local\\electron_quick_start\\packages';
 
+function deleteNugetFiles(path) {
+  console.log('deleteNugetFiles');
+  fs.readdir(path, function(err, files) {
+    if(err) {
+      console.log('err on line 10!', err);
+    } else {
+      console.log('files', files);
+      var tmpArr = files.filter(getExt);
+      console.log('tmpArr ', tmpArr);
+      checkAndDelete(path, tmpArr);
+    }
+  });
+}
+
+function checkAndDelete(path, files) {
+  console.log('checkAndDelete');
+  for(var i = 0; i < files.length; i++) {
+    fs.unlink(path + '\\' + files[i], function(err) {
+      if(err) {
+        console.log('line 21 err ', err);
+      }
+    });
+  }
+  if(path === packagePath) {
+    return
+  } else {
+    getFiles();
+  }
+}
+
 function getFiles() {
   fs.readdir(packagePath, function(err, files) {
     if(err) {
-      console.log('Error on line 7!', err);
+      console.log('Error on line 20!', err);
       // logIt(err);
       return;
     } else {
@@ -15,7 +45,7 @@ function getFiles() {
       console.log('tmpArr ', tmpArr);
       loopOverFiles(tmpArr);
     }
-  })
+  });
 };
 
 function getExt(file) {
@@ -28,14 +58,19 @@ function getExt(file) {
 }
 
 function readFiles(file) {
-  fs.readFile(packagePath + '\\' + file, 'utf8', function(err, data) {
+  var absolutePath = packagePath + '\\' + file;
+  fs.readFile(absolutePath, 'utf8', function(err, data) {
     if(err) {
       console.log('error on line 32 ', err);
     } else {
       console.log('else!');
-      // console.log('data ', data);
+      var tmpObj = {
+        fileName: file,
+        data: data
+      };
+      writeFiles(tmpObj);
     }
-  })
+  });
 }
 
 function loopOverFiles(files) {
@@ -45,11 +80,16 @@ function loopOverFiles(files) {
   }
 }
 
-console.log('dirname ', __dirname);
-
-function writeFiles(file) {
-  // fs.writeFile
-
+function writeFiles(fileObj) {
+  var newPath = __dirname + '\\' + fileObj.fileName;
+  fs.writeFile(newPath, fileObj.data, function(err) {
+    if(err) {
+      console.log('Error on line 59 ', err);
+    } else {
+      console.log('Success!');
+      deleteNugetFiles(packagePath);
+    }
+  });
 }
 
-getFiles();
+deleteNugetFiles(__dirname);
