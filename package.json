@@ -21,5 +21,8 @@
   "devDependencies": {
     "electron-builder": "^7.18.0",
     "electron-winstaller": "^2.3.4"
+  },
+  "dependencies": {
+    "windows-shortcuts": "^0.1.4"
   }
 }

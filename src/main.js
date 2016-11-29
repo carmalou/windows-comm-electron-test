@@ -84,6 +84,9 @@ autoUpdater.on('update-downloaded', function(response) {
   autoUpdater.quitAndInstall();
 });
 
+logIt('dirname is:');
+logIt(__dirname);
+
 function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({width: 800, height: 600});

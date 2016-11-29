@@ -1,6 +1,6 @@
 {
   "name": "electron_quick_start",
-  "version": "1.0.65",
+  "version": "1.0.68",
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
@@ -28,6 +28,7 @@
   "dependencies": {
     "fs": "0.0.1-security",
     "os": "^0.1.1",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "windows-shortcuts": "^0.1.4"
   }
 }
